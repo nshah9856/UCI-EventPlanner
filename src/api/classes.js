@@ -220,7 +220,9 @@ class Section {
     }
 }
 
-module.exports.School = School;
-module.exports.Department = Department;
-module.exports.Course = Course;
-module.exports.Section = Section;
+export {
+    School,
+    Department,
+    Course,
+    Section
+}

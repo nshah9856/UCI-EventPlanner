@@ -1,6 +1,6 @@
-const classes = require("./classes.js");
-const request = require("request");
-const cheerio = require("cheerio");
+import request from 'request'
+import cheerio from 'cheerio'
+import {School, Department, Course, Section} from './classes'
 
 function callWebSocAPI({
                            term, GE = 'ANY', department = 'ALL', courseNum = '', division = 'ANY', courseCodes = '',
@@ -98,12 +98,12 @@ function parse(XMLBody) {
 
     root.find('school').each(function () {
         const school = $(this);
-        const schoolObj = new classes.School(school.attr("school_name"), $('school_comment', school).text());
+        const schoolObj = new School(school.attr("school_name"), $('school_comment', school).text());
         schools.push(schoolObj);
 
         school.find('department').each(function () {
             const dept = $(this);
-            const deptObj = new classes.Department([dept.attr('dept_code'), dept.attr('dept_name')]);
+            const deptObj = new Department([dept.attr('dept_code'), dept.attr('dept_name')]);
             schoolObj.addDepartment(deptObj);
             dept.find('department_comment').each(function () {
                 deptObj.addComment($(this).text());
@@ -117,7 +117,7 @@ function parse(XMLBody) {
 
             dept.find('course').each(function () {
                 const course = $(this);
-                const courseObj = new classes.Course([dept.attr('dept_code'), course.attr('course_number'), course.attr('course_title')], $('course_prereq_link', course).text(), $('course_comment', course).text());
+                const courseObj = new Course([dept.attr('dept_code'), course.attr('course_number'), course.attr('course_title')], $('course_prereq_link', course).text(), $('course_comment', course).text());
                 deptObj.addCourse(courseObj);
 
                 course.find('section').each(function () {
@@ -147,7 +147,7 @@ function parse(XMLBody) {
                     });
                     sectionData.meetings = meetings;
 
-                    courseObj.addSection(new classes.Section(sectionData));
+                    courseObj.addSection(new Section(sectionData));
                 });
             });
         });
@@ -156,5 +156,7 @@ function parse(XMLBody) {
     return schools;
 }
 
-module.exports.callWebSocAPI = callWebSocAPI;
-module.exports.parseForClasses = parse;
+export {
+    callWebSocAPI,
+    parse
+}
