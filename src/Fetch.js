@@ -22,7 +22,7 @@ class Fetch extends React.Component{
         updateSelect(false)
         // console.log("New", GE, Dept, Year)
         const opts = {
-          term: '2020 Winter',
+          term: Year,
           GE: GE,
           department: Dept
         }
@@ -38,10 +38,9 @@ class Fetch extends React.Component{
   
 
   render(){
-    const {GE, Dept, Year, select, data, loading} = this.props
+    const {select, data, loading} = this.props
     return (
         <div>
-          <p> {GE} {Dept}</p>
           {
             select === true ?
             <p>Select one of year dept and ge</p>

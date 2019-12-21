@@ -24,10 +24,10 @@ const splitTimeInSection = (t, s) => {
 
 const roundTime = (startH, startM, endH, endM) => {
     const H = endH - startH
-    const M = endM - startM
-    if (M === 20) //we will round down
+    // const M = endM - startM
+    if (endM === 20) //we will round down
         return splitTimeInSection(startH,H)
-    if (M === 50)
+    if (endM === 50)
        return splitTimeInSection(startH,H+1)
     
 }
@@ -37,7 +37,7 @@ const splitTime = (start, end, ampm) => {
     const [endHr,endMin] = end.split(':').map(v => parseInt(v,10))
 
     if (ampm === 'p'){
-        if (endHr >= 12 && startHr < 12){
+        if ((endHr === 12 || endHr === 1 || endHr === 2) && (startHr === 11 || startHr === 10 || startHr === 9)){
             const [startH,startM] = convertTime12to24(startHr, startMin)
             const [endH,endM] =  convertTime12to24(endHr,endMin,ampm)
             // console.log("Start", startH,":",startM, "End", endH,":",endM)   
@@ -120,7 +120,6 @@ const cleanUpData = data => {
         }
         cleanData[k] = arr
     }
-
     for (const k in cleanData){
         const arr = []
         for (const j in cleanData[k]){

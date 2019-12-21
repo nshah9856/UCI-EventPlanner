@@ -1,13 +1,12 @@
 import React from 'react';
-import Form from './Form'
-import Fetch from './Fetch'
+import Application from './Application'
 
 class App extends React.Component{
   render(){
 
     return (
       <div>
-        <Form />
+        <Application />
       </div>
     );
   }

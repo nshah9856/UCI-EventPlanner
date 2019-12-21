@@ -21,7 +21,7 @@ function callWebSocAPI({
         url: "https://cors-anywhere.herokuapp.com/https://cors-anywhere.herokuapp.com/https://www.reg.uci.edu/perl/WebSoc",
         form: {
             Submit: 'Display XML Results',
-            YearTerm: getCodedTerm(term.toLowerCase()),
+            YearTerm: term,
             ShowComments: 'on',
             ShowFinals: 'on',
             Breadth: GE,
@@ -53,25 +53,25 @@ function callWebSocAPI({
     });
 }
 
-function getCodedTerm(term) {
-    let actualTerm = '';
+// function getCodedTerm(term) {
+//     let actualTerm = '';
 
-    if (term.includes('fall')) {
-        actualTerm = term.slice(0, 4) + '-92';
-    } else if (term.includes('winter')) {
-        actualTerm = term.slice(0, 4) + '-03';
-    } else if (term.includes('spring')) {
-        actualTerm = term.slice(0, 4) + '-14';
-    } else if (term.includes('summer1')) {
-        actualTerm = term.slice(0, 4) + '-25';
-    } else if (term.includes('summer2')) {
-        actualTerm = term.slice(0, 4) + '-76';
-    } else if (term.includes('summer10wk')) {
-        actualTerm = term.slice(0, 4) + '-39';
-    }
+//     if (term.includes('fall')) {
+//         actualTerm = term.slice(0, 4) + '-92';
+//     } else if (term.includes('winter')) {
+//         actualTerm = term.slice(0, 4) + '-03';
+//     } else if (term.includes('spring')) {
+//         actualTerm = term.slice(0, 4) + '-14';
+//     } else if (term.includes('summer1')) {
+//         actualTerm = term.slice(0, 4) + '-25';
+//     } else if (term.includes('summer2')) {
+//         actualTerm = term.slice(0, 4) + '-76';
+//     } else if (term.includes('summer10wk')) {
+//         actualTerm = term.slice(0, 4) + '-39';
+//     }
 
-    return actualTerm
-}
+//     return actualTerm
+// }
 
 function getCodedDiv(div) {
     let codedDiv = div.toLowerCase();
