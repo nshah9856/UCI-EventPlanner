@@ -1,3 +1,5 @@
+This project has been inspired by https://github.com/elsoroka/timecrunch
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
